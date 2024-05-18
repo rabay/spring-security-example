@@ -18,6 +18,7 @@
 		<java.version>17</java.version>
 		<sonar.organization>rabay</sonar.organization>
 		<sonar.projectKey>rabay_spring-security-example</sonar.projectKey>
+		<sonar.projectVersion>${project.version}</sonar.projectVersion>
 	</properties>
 	<dependencies>
 		<dependency>

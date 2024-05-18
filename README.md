@@ -1,0 +1,3 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rabay_spring-security-example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rabay_spring-security-example)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=rabay_spring-security-example&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=rabay_spring-security-example)
