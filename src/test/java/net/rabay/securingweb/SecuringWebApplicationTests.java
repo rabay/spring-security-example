@@ -1,10 +1,10 @@
-package net.rabay.login;
+package net.rabay.securingweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LoginApplicationTests {
+class SecuringWebApplicationTests {
 
 	@Test
 	void contextLoads() {
