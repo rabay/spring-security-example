@@ -25,7 +25,6 @@ jobs:
           command: monitor
 
   quality:
-    needs: security
     runs-on: ubuntu-latest
 
     steps:
