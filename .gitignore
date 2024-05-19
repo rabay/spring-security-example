@@ -34,3 +34,4 @@ build/
 reports/
 .dccache
 run-sonar-and-snyk.sh
+build.sh
