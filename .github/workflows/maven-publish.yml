@@ -82,6 +82,7 @@ jobs:
 
 
   build:
+    name: Build and Publish
     needs: [security, quality]
     runs-on: ubuntu-latest
     permissions:
