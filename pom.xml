@@ -20,6 +20,13 @@
 		<sonar.projectKey>rabay_spring-security-example</sonar.projectKey>
 		<sonar.projectVersion>${project.version}</sonar.projectVersion>
 	</properties>
+	<distributionManagement>
+		<repository>
+		  <id>github</id>
+		  <name>GitHub Packages</name>
+		  <url>https://maven.pkg.github.com/rabay/spring-security-example</url>
+		</repository>
+	  </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
