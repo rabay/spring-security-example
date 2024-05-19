@@ -33,3 +33,4 @@ build/
 .vscode/
 reports/
 .dccache
+run-sonar-and-snyk.sh
