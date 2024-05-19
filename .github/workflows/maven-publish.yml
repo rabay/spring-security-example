@@ -30,6 +30,7 @@ jobs:
           category: snyk-tool
 
   build:
+    needs: security
     runs-on: ubuntu-latest
     permissions:
       contents: read
