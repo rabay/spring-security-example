@@ -14,19 +14,35 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven-3-jdk-17@master
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif --severity-threshold=high
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
+          args: --severity-threshold=high
+          command: monitor
+
+  quality:
+    needs: security
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          sarif_file: snyk.sarif
-          category: snyk-tool
+          java-version: '17'
+          distribution: 'temurin'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+      - name: Analyze with SonarCloud
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
 
   build:
     needs: security
@@ -48,12 +64,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    # - name: Analyze with SonarCloud
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-    #   run: mvn -B verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
+    
 
     # - name: Publish to GitHub Packages Apache Maven
     #   run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
