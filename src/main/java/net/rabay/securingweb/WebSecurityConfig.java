@@ -36,7 +36,7 @@ public class WebSecurityConfig {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		UserDetails user = User.builder()
 				.username("user")
-				.password(passwordEncoder.encode("password"))
+				.password(passwordEncoder.encode(""))
 				.roles("USER")
 				.build();
 
